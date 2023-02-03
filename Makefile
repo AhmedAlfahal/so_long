@@ -6,7 +6,7 @@
 #    By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/22 17:22:08 by aalfahal          #+#    #+#              #
-#    Updated: 2023/02/02 17:50:19 by aalfahal         ###   ########.fr        #
+#    Updated: 2023/02/03 21:44:45 by aalfahal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 NAME1	=	so_long
 
-SRC1	=	map_parsing.c	\
-			map_components.c\
-			drawing_map.c	\
-			drawing_map2.c	\
-			so_long.c		\
-			dir_draw.c		\
-			valid_path.c
+SRC1	=	src/map_parsing.c	\
+			src/map_components.c\
+			src/drawing_map.c	\
+			src/drawing_map2.c	\
+			src/so_long.c		\
+			src/dir_draw.c		\
+			src/valid_path.c
 
 SRCS1	=	$(SRC1:%.c=%.o)
 
