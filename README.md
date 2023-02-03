@@ -10,4 +10,5 @@ you can Edit the Map as long as it respects the rules which is:
 • there should be a valid path in the map. \
 • the map should at least have one exit, one collectible and one player. etherwise it will show an error.
 
-# Video Demo
+# Demo
+![Demo](https://user-images.githubusercontent.com/111463922/216670676-a438e3d7-ca1d-44c4-b0c0-46db352c3524.gif)
