@@ -1,8 +1,8 @@
 # so_long
 This is a 2D game designed in C using minilibX provided in 42curses. \
 To play this game u have to be in a macOS use the following commands. \
-`make` then `./so_long map.ber` and Enjoy :) \
-you can Edit the Map as long as it respects the rules
+`make` then `./so_long maps/42.ber` Enjoy :) \
+you can Edit the Map as long as it respects the rules.
 
 # Rules of the map
 • The map must be rectangular. \
