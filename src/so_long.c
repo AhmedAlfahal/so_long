@@ -6,28 +6,22 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:16:02 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/02/02 17:59:22 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:57:33 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
 
-int	key(int key_code, t_so_long *s)
+static void	uninitialize_imgs(t_so_long *s, t_img *img)
 {
-	if (key_code == 53)
-		destroy_window(s);
-	else if (key_code == 13)
-		go_up(s);
-	else if (key_code == 1)
-		go_down(s);
-	else if (key_code == 0)
-		go_left(s);
-	else if (key_code == 2)
-		go_right(s);
-	return (0);
+	mlx_destroy_image(s->mlx->mlx, img->player);
+	mlx_destroy_image(s->mlx->mlx, img->wall);
+	mlx_destroy_image(s->mlx->mlx, img->coin);
+	mlx_destroy_image(s->mlx->mlx, img->space);
+	mlx_destroy_image(s->mlx->mlx, img->exit);
 }
 
-int	destroy_window(t_so_long *s)
+static int	destroy_window(t_so_long *s)
 {
 	uninitialize_imgs(s, s->img);
 	mlx_destroy_window(s->mlx->mlx, s->mlx->win);
@@ -35,6 +29,40 @@ int	destroy_window(t_so_long *s)
 	free(s->map);
 	write(2, "bye\n", 4);
 	exit(0);
+}
+
+static void	go(t_so_long *s, int x, int y)
+{
+	if (s->map->map[s->map->p_i + y][s->map->p_j + x] == 'E' \
+	&& s->map->coin == 0)
+		clean_exit(s->map, 8, 1);
+	else if (s->map->map[s->map->p_i + y][s->map->p_j + x] == 'E' \
+	&& s->map->coin != 0)
+		write(2, "You have to collect all coins\n", 31);
+	else if (s->map->map[s->map->p_i + y][s->map->p_j + x] != '1')
+	{
+		if (s->map->map[s->map->p_i + y][s->map->p_j + x] == 'C')
+			s->map->coin--;
+		s->map->map[s->map->p_i][s->map->p_j] = '0';
+		s->map->map[s->map->p_i + y][s->map->p_j + x] = 'P';
+		draw_map(s);
+		ft_printf("[%d]	move so far...\n", ++s->map->moves);
+	}
+}
+
+static int	key(int key_code, t_so_long *s)
+{
+	if (key_code == 53)
+		destroy_window(s);
+	else if (key_code == 13)
+		go(s, 0, -1);
+	else if (key_code == 1)
+		go(s, 0, 1);
+	else if (key_code == 0)
+		go(s, -1, 0);
+	else if (key_code == 2)
+		go(s, 1, 0);
+	return (0);
 }
 
 int	main(int ac, char **av)

@@ -6,11 +6,22 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:22:33 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/02/02 17:56:44 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:57:25 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
+
+static void	draw_xpm(t_so_long *s, void *xpm, int msg)
+{
+	mlx_put_image_to_window(s->mlx->mlx, s->mlx->win, \
+	xpm, s->map->j * 64, s->map->i * 64);
+	if (msg == 1)
+	{
+		s->map->p_i = s->map->i;
+		s->map->p_j = s->map->j;
+	}
+}
 
 void	draw_map(t_so_long *s)
 {
@@ -20,15 +31,15 @@ void	draw_map(t_so_long *s)
 		while (s->map->map[s->map->i][s->map->j])
 		{
 			if (s->map->map[s->map->i][s->map->j] == '1')
-				draw_wall(s);
+				draw_xpm(s, s->img->wall, 0);
 			else if (s->map->map[s->map->i][s->map->j] == '0')
-				draw_space(s);
+				draw_xpm(s, s->img->space, 0);
 			else if (s->map->map[s->map->i][s->map->j] == 'C')
-				draw_coin(s);
+				draw_xpm(s, s->img->coin, 0);
 			else if (s->map->map[s->map->i][s->map->j] == 'P')
-				draw_player(s);
+				draw_xpm(s, s->img->player, 1);
 			else if (s->map->map[s->map->i][s->map->j] == 'E')
-				draw_exit(s);
+				draw_xpm(s, s->img->exit, 0);
 			s->map->j++;
 		}
 		s->map->i++;
@@ -51,13 +62,4 @@ void	initialize_imgs(t_so_long *s, t_img *img)
 	if (img->coin == NULL || img->exit == NULL \
 	|| img->player == NULL || img->wall == NULL || img->space == NULL)
 		clean_exit(s->map, 10, 1);
-}
-
-void	uninitialize_imgs(t_so_long *s, t_img *img)
-{
-	mlx_destroy_image(s->mlx->mlx, img->player);
-	mlx_destroy_image(s->mlx->mlx, img->wall);
-	mlx_destroy_image(s->mlx->mlx, img->coin);
-	mlx_destroy_image(s->mlx->mlx, img->space);
-	mlx_destroy_image(s->mlx->mlx, img->exit);
 }

@@ -6,7 +6,7 @@
 /*   By: aalfahal <aalfahal@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:15:58 by aalfahal          #+#    #+#             */
-/*   Updated: 2023/02/03 21:46:15 by aalfahal         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:58:11 by aalfahal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,36 +68,16 @@ typedef struct so_long
 
 void	clean_exit(t_map *map, int msg, int ex);
 void	free_2d_array(char **map);
-void	closing_and_freeing(int fd, char *line, int ext);
+void	initialize_imgs(t_so_long *s, t_img *img);
 
 /******************************Parsing Map******************************/
 
 t_map	*reading_map(char *s);
-t_map	*check_map_component(char **mapp);
 t_map	*letting_component_in(char **mapp);
-t_map	*getting_map_ready(char **map);
-char	**reading_to2d(char *s, int number_of_lines);
-void	checking_walls(t_map *map, int i, int j);
-void	letting_component_in_help(t_map *map, int i, int j);
 
 /******************************Map Drawing*******************************/
 
-int		destroy_window(t_so_long *s);
-void	initialize_imgs(t_so_long *s, t_img *img);
-void	uninitialize_imgs(t_so_long *s, t_img *img);
 void	draw_map(t_so_long *s);
-void	draw_wall(t_so_long *s);
-void	draw_space(t_so_long *s);
-void	draw_coin(t_so_long *s);
-void	draw_player(t_so_long *s);
-void	draw_exit(t_so_long *s);
-
-/******************************Moving Player*******************************/
-
-void	go_up(t_so_long	*s);
-void	go_down(t_so_long	*s);
-void	go_left(t_so_long	*s);
-void	go_right(t_so_long	*s);
 
 /******************************Valid Path**********************************/
 
