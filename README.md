@@ -8,7 +8,7 @@ you can Edit the Map as long as it respects the rules.
 • The map must be rectangular. \
 • The map must be closed/surrounded by walls \
 • there should be a valid path in the map. \
-• the map should at least have one exit, one collectible and one player. etherwise it will show an error. \
+• the map should at least have one exit, one collectible and one player. etherwise it will show an error.
 
 # Elements of the map
 1 : Wall \
